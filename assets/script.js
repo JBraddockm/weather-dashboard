@@ -1,4 +1,4 @@
-/* global cityRepository */
+/* global cityRepository, capitaliseFirstLetter */
 
 const APIKey = 'b1d2eae6a0a395f178e0b75365981fcc';
 const baseURL = 'https://api.openweathermap.org';
@@ -43,21 +43,35 @@ function handleSearchHistory(searchInput) {
 handleSearchHistory();
 
 function displayCurrentWeather(city) {
-  $('#temperature').text(`${city.currentWeather.main.temp.toFixed(1)}°C`);
+  $('.today').removeClass('d-none');
+  $('#today .city').text(`${city.id}`);
+  $('#today .country').text(`${city.country}`);
+  $('#today .temperature').text(`${city.currentWeather.main.temp.toFixed(1)}°C`);
+  $('#today .description').text(capitaliseFirstLetter(`${city.currentWeather.weather[0].description}`));
+  $('#today .wind-speed').text(`${city.currentWeather.wind.speed.toFixed(1)}km/h`);
+  $('#today .humidity').text(`${city.currentWeather.main.humidity}%`);
+  $('#today .feels-like').text(`${city.currentWeather.main.feels_like.toFixed(1)}°C`);
+  $('#today .weather-icon').attr('src', (`https://openweathermap.org/img/wn/${city.currentWeather.weather[0].icon}@2x.png`));
 }
-
 function displayWeatherForecast(city) {
-  const foreCastBlockEl = $('.forecast[data-placeholder="copy"]').removeAttr('data-placeholder');
+  const originalForeCastBlockEl = $('.forecast[data-placeholder="forecast"]');
+  const foreCastBlockElCopy = originalForeCastBlockEl.clone().removeAttr('data-placeholder').removeClass('d-none');
+
+  $('.forecast').not('[data-placeholder="forecast"]').remove();
 
   city.fiveDayForecast.forEach((element) => {
-    foreCastBlockEl.removeClass('d-none');
+    const foreCastBlockEl = foreCastBlockElCopy.clone();
 
-    foreCastBlockEl.find('.forecast-date').first().text(dayjs(element.dt_txt).format('DD/MM/YYYY'));
+    foreCastBlockEl.find('.temperature').text(`${element.main.temp.toFixed(1)}°C`);
+    foreCastBlockEl.find('.forecast-date').text(dayjs(element.dt_txt).format('DD/MM/YYYY'));
+    foreCastBlockEl.find('.description').text(capitaliseFirstLetter(`${element.weather[0].description}`));
+    foreCastBlockEl.find('.wind-speed').text(`${element.wind.speed.toFixed(1)}km/h`);
+    foreCastBlockEl.find('.humidity').text(`${element.main.humidity}%`);
+    foreCastBlockEl.find('.feels-like').text(`${element.main.feels_like.toFixed(1)}°C`);
+    foreCastBlockEl.find('.weather-icon').attr('src', (`https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png`));
 
-    foreCastBlockEl.clone()
-      .insertBefore(foreCastBlockEl);
+    foreCastBlockEl.insertBefore(originalForeCastBlockEl);
   });
-  foreCastBlockEl.remove();
 }
 
 function fetchGeoCodingRequest(city, callback) {
