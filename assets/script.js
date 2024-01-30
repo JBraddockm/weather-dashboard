@@ -40,6 +40,8 @@ function handleSearchHistory(searchInput) {
   });
 }
 
+handleSearchHistory();
+
 function fetchGeoCodingRequest(city, callback) {
   // Make the API request
   return fetch(`${baseURL}/data/2.5/weather?q=${city}&appid=${APIKey}`)
