@@ -42,6 +42,10 @@ function handleSearchHistory(searchInput) {
 
 handleSearchHistory();
 
+function displayCurrentWeather(city) {
+  $('#temperature').text(`${city.currentWeather.main.temp.toFixed(1)}°C`);
+}
+
 function fetchGeoCodingRequest(city, callback) {
   // Make the API request
   return fetch(`${baseURL}/data/2.5/weather?q=${city}&appid=${APIKey}`)
