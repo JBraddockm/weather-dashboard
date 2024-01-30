@@ -25,3 +25,50 @@ function saveEntityToLocalStorage(entity, key) {
     // Stores the updated map back in localStorage.
     localStorage.setItem(key, JSON.stringify([...collectionList]));
 }
+
+// Function to abstract the CRUD operations for city object.
+function CityRepository() {
+    this.saveCity = function (city) {
+        try {
+            // Retrieve existing cities from localStorage
+            cities = loadEntityFromLocalStorage('cities');
+
+            // Add the new user to the cities array
+            cities.set(city.id.toLowerCase(), city);
+
+            // Save the updated cities array to localStorage
+            saveEntityToLocalStorage(city, 'cities');
+
+            return true; // Return true if saving succeeds
+        } catch (error) {
+            console.error('Error saving city:', error);
+            return false; // Return false if saving fails
+        }
+    };
+
+    this.findAll = function () {
+        try {
+            return Array.from(loadEntityFromLocalStorage('cities').values());
+        } catch (error) {
+            console.error('Error retrieving cities from localStorage:', error);
+            return []; // Return an empty array if retrieval fails
+        }
+    };
+
+    this.findById = function (cityId) {
+        try {
+            let foundItem = null;
+            const citiesMap = loadEntityFromLocalStorage('cities');
+
+            citiesMap.forEach((value, key) => {
+                if (key === cityId.toLowerCase()) {
+                    foundItem = value;
+                }
+            });
+            return foundItem;
+        } catch (error) {
+            console.error('Error retrieving cities from localStorage:', error);
+            return []; // Return an empty array if retrieval fails
+        }
+    };
+}
