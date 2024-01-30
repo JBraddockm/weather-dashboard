@@ -155,4 +155,11 @@ function handleLocationSearch() {
 }
 searchFormEl.on('click', '#search-button', handleLocationSearch());
 
+function handleLocationHistoryClick() {
+  return (event) => {
+    cityName = $(event.target).attr('data-location');
+    handleRetrieveWeatherForecast();
+  };
+}
+
 searchHistoryEl.on('click', 'button', handleLocationHistoryClick());
