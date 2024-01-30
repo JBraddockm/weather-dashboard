@@ -24,6 +24,17 @@ function displayModal(error) {
   bootstrapModal.show();
 }
 
+function handleGeoCodingData(data) {
+  const city = new City(
+    data.name,
+    data.sys.country,
+    data.coord.lat,
+    data.coord.lon,
+  );
+  cityRepository.saveCity(city);
+  return city;
+}
+
 function handleRetrieveWeatherForecast() {
   fetchGeoCodingRequest(cityName, handleGeoCodingData)
     .then((geoData) => {
