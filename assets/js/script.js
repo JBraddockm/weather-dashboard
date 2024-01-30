@@ -52,6 +52,7 @@ function displayCurrentWeather(city) {
   $('#today .humidity').text(`${city.currentWeather.main.humidity}%`);
   $('#today .feels-like').text(`${city.currentWeather.main.feels_like.toFixed(1)}°C`);
   $('#today .weather-icon').attr('src', (`https://openweathermap.org/img/wn/${city.currentWeather.weather[0].icon}@2x.png`));
+  $('#today .weather-icon').attr('alt', (capitaliseFirstLetter(`${city.currentWeather.weather[0].description}`)));
 }
 function displayWeatherForecast(city) {
   const originalForeCastBlockEl = $('.forecast[data-placeholder="forecast"]');
@@ -69,6 +70,7 @@ function displayWeatherForecast(city) {
     foreCastBlockEl.find('.humidity').text(`${element.main.humidity}%`);
     foreCastBlockEl.find('.feels-like').text(`${element.main.feels_like.toFixed(1)}°C`);
     foreCastBlockEl.find('.weather-icon').attr('src', (`https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png`));
+    foreCastBlockEl.find('.weather-icon').attr('alt', (capitaliseFirstLetter(`${element.weather[0].description}`)));
 
     foreCastBlockEl.insertBefore(originalForeCastBlockEl);
   });
