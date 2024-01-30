@@ -7,3 +7,5 @@ const searchHistory = new Set();
 const searchHistoryEl = $('#history');
 const searchFormEl = $('#search-form');
 let cityName;
+
+const bootstrapModal = new bootstrap.Modal('#errorModal');
