@@ -18,3 +18,8 @@ function City(name, country, latitude, longitude, currentWeather = null, fiveDay
     this.currentWeather = currentWeather;
     this.fiveDayForecast = fiveDayForecast;
 }
+
+function displayModal(error) {
+    $('.modal-body').text(`${error}`);
+    bootstrapModal.show();
+}
