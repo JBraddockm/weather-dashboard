@@ -51,7 +51,7 @@ Visit [https://jbraddockm.github.io/weather-dashboard/](https://jbraddockm.githu
 * Uses Bootstrap 5
 * Primarily uses jQuery
 ## Limitations
-* OpenWeather's Geocoding API return status 200 even if a location does not exist. It is difficult to handle errors. The app is using another API to geoCode locations.
+* OpenWeather's Geocoding API returns status 200 even if a location does not exist. This makes the error handling difficult. The app uses another API to geoCode locations instead.
 * OpenWeather API does not include any ID for locations. For simplicity, the app does not handle multiple locations with the same name.
 * Day/Timestamp weather forecast is not available in free tier. The app uses a list of data and picks 12:00 forecast by default or any other value for the last date.
 ## Credit
