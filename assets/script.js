@@ -24,6 +24,22 @@ function displayModal(error) {
   bootstrapModal.show();
 }
 
+function handleSearchHistory(searchInput) {
+  if (!searchHistory.has(searchInput)) {
+    searchHistory.add(searchInput);
+    $('#search-input').val('');
+  }
+
+  searchHistoryEl.empty();
+  cityRepository.findAll().forEach((element) => {
+    $('<button>')
+      .addClass('btn btn-secondary location-button')
+      .text(element.id)
+      .attr('data-location', element.id)
+      .appendTo('#history');
+  });
+}
+
 function fetchGeoCodingRequest(city, callback) {
   // Make the API request
   return fetch(`${baseURL}/data/2.5/weather?q=${city}&appid=${APIKey}`)
