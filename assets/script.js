@@ -46,6 +46,20 @@ function displayCurrentWeather(city) {
   $('#temperature').text(`${city.currentWeather.main.temp.toFixed(1)}°C`);
 }
 
+function displayWeatherForecast(city) {
+  const foreCastBlockEl = $('.forecast[data-placeholder="copy"]').removeAttr('data-placeholder');
+
+  city.fiveDayForecast.forEach((element) => {
+    foreCastBlockEl.removeClass('d-none');
+
+    foreCastBlockEl.find('.forecast-date').first().text(dayjs(element.dt_txt).format('DD/MM/YYYY'));
+
+    foreCastBlockEl.clone()
+      .insertBefore(foreCastBlockEl);
+  });
+  foreCastBlockEl.remove();
+}
+
 function fetchGeoCodingRequest(city, callback) {
   // Make the API request
   return fetch(`${baseURL}/data/2.5/weather?q=${city}&appid=${APIKey}`)
