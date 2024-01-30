@@ -72,3 +72,5 @@ function CityRepository() {
         }
     };
 }
+
+const cityRepository = new CityRepository();
