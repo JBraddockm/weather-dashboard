@@ -33,12 +33,13 @@
       <div class="col-lg-9 pb-3">
         <section id="today" class="container" role="region" aria-live="polite">
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 align-items-stretch">
-            <div class="today col">
+            <div class="today col d-none">
               <div class="card">
                 <div class="card-body p-4">
 
                   <div class="d-flex">
-                    <h2 class="flex-grow-1">London</h2>
+                    <h2 class="city flex-grow-1">London</h2>
+                    <span class="country">15:07</span>
                   </div>
 
                   <div class="d-flex flex-column text-center mt-5 mb-4">
@@ -48,15 +49,14 @@
 
                   <div class="d-flex align-items-center">
                     <div class="flex-grow-1" style="font-size: 1rem;">
-                      <div><i class="fas fa-wind fa-fw"></i> <span class="ms-1"> 40 km/h </span></div>
-                      <div><i class="fas fa-tint fa-fw"></i> <span class="ms-1"> 84% </span></div>
-                      <div><i class="fas fa-eye fa-fw"></i> <span class="ms-1"> 10.0Km </span></div>
+                      <div><i class="fas fa-wind fa-fw"></i> <span class="ms-1 wind-speed"> 40 km/h </span></div>
+                      <div><i class="fas fa-tint fa-fw"></i> <span class="ms-1 humidity"> 84% </span></div>
+                      <div><i class="fas fa-thermometer fa-fw"></i> <span class="ms-1 feels-like"> 10.0Km </span></div>
                     </div>
                     <div>
-                      <img src="https://openweathermap.org/img/wn/10d@2x.png" width="100px" alt="">
+                      <img class="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" width="100px">
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -64,27 +64,27 @@
         </section>
         <section id="forecast" class="container mt-3" role="region" aria-live="polite">
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 align-items-stretch">
-            <div class="forecast col d-none" data-placeholder="copy">
+            <div class="forecast col d-none" data-placeholder="forecast">
               <div class="card">
                 <div class="card-body p-4">
 
                   <div class="d-flex">
-                    <p class="forecast-date flex-grow-1">31/01/2024</p>
+                    <p class="forecast-date flex-grow-1 fw-bold">31/01/2024</p>
                   </div>
 
                   <div class="d-flex flex-column text-center mt-5 mb-4">
-                    <p class="display-4 mb-0 font-weight-bold"> 13°C </p>
-                    <span class="small">Stormy</span>
+                    <p class="temperature display-4 mb-0 font-weight-bold"> 13°C </p>
+                    <span class="description small">Stormy</span>
                   </div>
 
                   <div class="d-flex align-items-center">
                     <div class="flex-grow-1" style="font-size: 1rem;">
-                      <div><i class="fas fa-wind fa-fw"></i> <span class="ms-1"> 40 km/h </span></div>
-                      <div><i class="fas fa-tint fa-fw"></i> <span class="ms-1"> 84% </span></div>
-                      <div><i class="fas fa-eye fa-fw"></i> <span class="ms-1"> 10.0Km </span></div>
+                      <div><i class="fas fa-wind fa-fw"></i> <span class="wind-speed ms-1"> 40 km/h </span></div>
+                      <div><i class="fas fa-tint fa-fw"></i> <span class="humidity ms-1"> 84% </span></div>
+                      <div><i class="fas fa-eye fa-fw"></i> <span class="feels-like ms-1"> 10.0Km </span></div>
                     </div>
                     <div>
-                      <img src="https://openweathermap.org/img/wn/10d@2x.png" width="100px" alt="">
+                      <img class="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" width="100px" alt="">
                     </div>
                   </div>
 
