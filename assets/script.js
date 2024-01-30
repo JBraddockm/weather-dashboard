@@ -24,4 +24,17 @@ function displayModal(error) {
   bootstrapModal.show();
 }
 
+function handleLocationSearch() {
+  return (event) => {
+    event.preventDefault();
+    const searchInput = $('#search-input').val().trim();
+
+    if (searchInput === '') {
+      displayModal('Please enter a location');
+      return;
+    }
+    cityName = searchInput;
+    handleRetrieveWeatherForecast();
+  };
+}
 searchFormEl.on('click', '#search-button', handleLocationSearch());
