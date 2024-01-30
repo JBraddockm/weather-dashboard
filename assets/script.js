@@ -154,3 +154,5 @@ function handleLocationSearch() {
   };
 }
 searchFormEl.on('click', '#search-button', handleLocationSearch());
+
+searchHistoryEl.on('click', 'button', handleLocationHistoryClick());
