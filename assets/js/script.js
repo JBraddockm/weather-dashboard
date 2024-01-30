@@ -44,7 +44,7 @@ handleSearchHistory();
 
 function displayCurrentWeather(city) {
   $('.today').removeClass('d-none');
-  $('#today .city').text(`${city.id}`);
+  $('#today .city').text(`${city.id} - ${dayjs(city.dt_txt).format('DD/MM/YYYY')} `);
   $('#today .country').text(`${city.country}`);
   $('#today .temperature').text(`${city.currentWeather.main.temp.toFixed(1)}°C`);
   $('#today .description').text(capitaliseFirstLetter(`${city.currentWeather.weather[0].description}`));
