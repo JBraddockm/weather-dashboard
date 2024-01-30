@@ -24,6 +24,22 @@ function displayModal(error) {
   bootstrapModal.show();
 }
 
+function handleRetrieveWeatherForecast() {
+  fetchGeoCodingRequest(cityName, handleGeoCodingData)
+    .then((geoData) => {
+      // Check if geoData is valid before proceeding
+      if (geoData) {
+        handleFiveDayForecastData(geoData);
+        handleSearchHistory(cityName);
+      } else {
+        throw new Error('Failed to retrieve geocoding data.');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function handleLocationSearch() {
   return (event) => {
     event.preventDefault();
