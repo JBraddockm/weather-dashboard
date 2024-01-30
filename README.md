@@ -26,6 +26,8 @@ The primary objectives include:
 
 The following video shows the application's functionalities.
 
+https://github.com/JBraddockm/weather-dashboard/assets/16445610/aded5027-ad73-46f1-b64a-0c4db978dee5
+
 The deployed application is available at: [https://jbraddockm.github.io/weather-dashboard/](https://jbraddockm.github.io/weather-dashboard/)
 
 ## Table of Contents
