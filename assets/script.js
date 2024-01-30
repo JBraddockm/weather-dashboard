@@ -24,6 +24,21 @@ function displayModal(error) {
   bootstrapModal.show();
 }
 
+function fetchGeoCodingRequest(city, callback) {
+  // Make the API request
+  return fetch(`${baseURL}/data/2.5/weather?q=${city}&appid=${APIKey}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Location cannot be found.');
+      }
+      return response.json();
+    })
+    .then((data) => callback(data))
+    .catch((error) => {
+      displayModal(error);
+    });
+}
+
 function handleGeoCodingData(data) {
   const city = new City(
     data.name,
