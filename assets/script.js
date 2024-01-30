@@ -9,3 +9,12 @@ const searchFormEl = $('#search-form');
 let cityName;
 
 const bootstrapModal = new bootstrap.Modal('#errorModal');
+
+function City(name, country, latitude, longitude, currentWeather = null, fiveDayForecast = []) {
+    this.id = name;
+    this.country = country;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.currentWeather = currentWeather;
+    this.fiveDayForecast = fiveDayForecast;
+}
