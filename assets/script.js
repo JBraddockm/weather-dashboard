@@ -50,6 +50,44 @@ function handleGeoCodingData(data) {
   return city;
 }
 
+function handleFiveDayForecastData(city) {
+  fetch(`${baseURL}/data/2.5/forecast?lat=-${city.latitude}&lon=${city.longitude}&units=metric&appid=${APIKey}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      /* data.list is an array containing weather information.
+        * Assigns data.list[0] to a new currentWeather variable,
+        * Removes it from the array and return the remaining array to new weatherData variable.
+        * */
+
+      const [currentWeather, ...weatherData] = data.list;
+
+      // Assigns the first element of weatherData to city.currentWeather.
+      city.currentWeather = currentWeather;
+
+      /* Filters weatherData and checks for 12 as hour in array.
+        * If it is the last element, picks the latest available data.
+        */
+      weatherData.filter((element, index) => dayjs(element.dt_txt).format('HH') === '12' || index === weatherData.length - 1)
+        .forEach((element) => {
+          // Adds filtered weather forecast to city.fiveDayForecast.
+          city.fiveDayForecast.push(element);
+        });
+      // Saves city object.
+      cityRepository.saveCity(city);
+
+      displayCurrentWeather(city);
+      displayWeatherForecast(city);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function handleRetrieveWeatherForecast() {
   fetchGeoCodingRequest(cityName, handleGeoCodingData)
     .then((geoData) => {
