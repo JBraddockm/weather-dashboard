@@ -124,10 +124,20 @@ function handleFiveDayForecastData(city) {
       /* Filters weatherData and checks for 12 as hour in array.
         * If it is the last element, picks the latest available data.
         */
+
+      const uniqueDates = new Set();
+
       weatherData.filter((element, index) => dayjs(element.dt_txt).format('HH') === '12' || index === weatherData.length - 1)
         .forEach((element) => {
-          // Adds filtered weather forecast to city.fiveDayForecast.
-          city.fiveDayForecast.push(element);
+          const date = dayjs(element.dt_txt).format('DD/MM/YYYY');
+
+          // Check if the date has not been encountered before
+          if (!uniqueDates.has(date)) {
+            uniqueDates.add(date);
+
+            // Add the element to the forecast array
+            city.fiveDayForecast.push(element);
+          }
         });
       // Saves city object.
       cityRepository.saveCity(city);
